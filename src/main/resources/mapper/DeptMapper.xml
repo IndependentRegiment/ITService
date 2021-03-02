@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zt.dao.DeptMapper">
+
+    <!-- 获取部门信息 -->
+    <select id="getAllDept" resultType="DeptInfo">
+        select DeptID as deptId, ParentID as parentId, DeptName as deptName from tb_org
+        where 1=1
+        <if test="deptId != null and deptId != 0">
+            and DeptID=#{deptId}
+        </if>
+    </select>
+
+    <!-- 获取部门信息 by Name -->
+    <select id="getDeptByName" resultType="DeptInfo">
+        select DeptID as deptId, ParentID as parentId, DeptName as deptName from tb_org
+        where 1=1
+        <if test="deptName != null and deptName != ''">
+            and DeptName like concat('%', #{deptName}, '%')
+        </if>
+    </select>
+
+    <!-- 获取部门信息 by all -->
+    <select id="getDeptByAll" resultType="DeptInfo">
+        select DeptID as deptId, ParentID as parentId, DeptName as deptName from tb_org
+    </select>
+    
+</mapper>

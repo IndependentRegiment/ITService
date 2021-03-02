@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zt.dao.CardMapper">
+
+    <sql id="myCard">
+        card_id, apply_id, apply_name, priority, problem_type,
+        assist_id, status_id, reason, solution, satisfaction, comment,
+        create_time, end_time, process_node, distribution, deal, change_id,
+        description, construction, phone, dept_id, wait_count, appointment_create,
+        appointment_end, place, deal_way
+　　</sql>
+
+    <!-- 获取用户所有工单 -->
+    <select id="getUserCardList" resultType="JobCard">
+        select
+        <include refid="myCard"/>
+        from tb_jobcard
+        where apply_id=#{openId} or assist_id=#{openId}
+        or deal=#{openId} or change_id=#{openId} or construction=#{openId}
+    </select>
+
+    <!-- 获取所有工单 -->
+    <select id="getAllCard" resultType="JobCard">
+        select
+        <include refid="myCard"/>, u.UserName
+        from tb_jobcard j left join tb_user u on j.deal = u.openid
+        where 1=1
+        <if test="applyName != null and applyName != ''">
+            and (apply_name like concat('%', #{applyName}, '%') or u.UserName like concat('%', #{applyName}, '%'))
+        </if>
+        <if test="openId != null and openId != ''">
+            and apply_id=#{openId}
+        </if>
+        <if test="problemType != 0 and problemType != null">
+            and problem_type=#{problemType}
+        </if>
+        <if test="createTime != null and createTime != ''">
+            and DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') > DATE_FORMAT(#{createTime},'%Y-%m-%d %H:%i:%s')
+        </if>
+        <if test="endTime != null and endTime != ''">
+            and DATE_FORMAT(#{endTime},'%Y-%m-%d %H:%i:%s') > DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')
+        </if>
+        order by DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') desc
+    </select>
+
+    <select id="getCardCountById" resultType="int">
+        select count(*)
+        from tb_jobcard where (assist_id=#{openId} or deal=#{openId}) and 3 >= status_id
+        and TO_DAYS(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = TO_DAYS(NOW())
+    </select>
+
+    <!-- 分页查询 -->
+    <select id ="getUserCardPage" resultType="JobCard">
+        select
+        <include refid="myCard"/>
+        from tb_jobcard
+        where apply_id=#{openId} or assist_id=#{openId}
+        or deal=#{openId} or change_id=#{openId} or construction=#{openId}
+        <!-- order by create_time desc offset #{start} rows fetch next #{size} rows only -->
+    </select>
+
+    <!-- 获取工单详情 -->
+    <select id ="getUserCardDetail" resultType="JobCard">
+        select
+        <include refid="myCard"/>
+        from tb_jobcard
+        where 1=1
+        <if test="cardId != null and problemId != ''">
+            and card_id=#{cardId}
+        </if>
+    </select>
+
+    <!-- 根据类型id获取类型-->
+    <select id="getAllProblemInfo" resultType="ProblemInfo">
+        select type_id, type_name, parent_id, type_no from tb_problemtype where 1=1
+        <if test="problemId != null and problemId != 0">
+            and type_id=#{problemId}
+        </if>
+    </select>
+
+    <!-- 获取故障类型by all -->
+    <select id="getProblemInfoByAll" resultType="ProblemInfo">
+        select type_id, type_name, parent_id, type_no from tb_problemtype where 1=1
+        <if test="typeId != null and typeId != 0">
+            and type_id=#{typeId}
+        </if>
+        <if test="typeName != null and typeName != ''">
+            and type_name=#{typeName}
+        </if>
+        <if test="parentId != null and parentId != 0">
+            and parent_id=#{parentId}
+        </if>
+        <if test="typeNo != null and typeNo != 0">
+            and type_no=#{typeNo}
+        </if>
+        <if test="serviceId != null and serviceId != 0">
+            and service_id=#{serviceId}
+        </if>
+    </select>
+
+    <!-- 根据类型id获取用户信息 -->
+    <select id="getAssistUser" resultType="UserInfo">
+        select u.openid as openId, u.UserName as userName
+        from tb_userservice us
+        inner join tb_user u on us.open_id = u.openid
+        inner join tb_user_role ur on us.open_id = ur.user_id
+        where ur.role_id = 4
+        <if test="serviceId != 0 and serviceId != null">
+            and service_id=#{serviceId}
+        </if>
+    </select>
+
+    <!-- 根据节点id获取流程节点 -->
+    <select id="getProcessInfo" resultType="ProcessInfo">
+        select node_id, node_name from tb_processnode where node_id=#{nodeId}
+    </select>
+
+    <!-- 创建故障单 -->
+    <insert id="createCard" parameterType="JobCard">
+        insert into tb_jobcard(card_id, apply_id, apply_name, priority, problem_type, assist_id, status_id, reason, solution, end_time,
+        create_time, process_node, distribution, deal, description, construction, phone, dept_id, wait_count, appointment_create, appointment_end, place, deal_way, mobile_phone) values
+        (#{cardId, jdbcType=VARCHAR}, #{applyId, jdbcType=VARCHAR}, #{applyName, jdbcType=VARCHAR}, #{priority, jdbcType=INTEGER}, #{problemType, jdbcType=INTEGER},
+        #{assistId, jdbcType=VARCHAR}, #{statusId, jdbcType=INTEGER}, #{reason, jdbcType=VARCHAR}, #{solution, jdbcType=VARCHAR},
+        #{endTime, jdbcType=VARCHAR}, #{createTime, jdbcType=VARCHAR}, #{processNode, jdbcType=INTEGER}, #{distribution, jdbcType=VARCHAR},
+        #{deal, jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}, #{construction, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR},
+        #{deptId, jdbcType=INTEGER}, #{waitCount, jdbcType=INTEGER}, #{appointmentCreate, jdbcType=TIMESTAMP},
+        #{appointmentEnd, jdbcType=TIMESTAMP}, #{place, jdbcType=VARCHAR}, #{dealWay, jdbcType=INTEGER}, #{mobilePhone, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 修改故障单 -->
+    <update id="updateCardByEng" parameterType="JobCard">
+        update tb_jobcard
+            <set>
+                <if test="problemType != null and problemType != 0">
+                    problem_type=#{problemType},
+                </if>
+                <if test="assistId != null and assistId != ''">
+                    assist_id=#{assistId},
+                </if>
+                <if test="statusId != null and statusId != 0">
+                    status_id=#{statusId},
+                </if>
+                <if test="reason != null and reason != ''">
+                    reason=#{reason},
+                </if>
+                <if test="solution != null and solution != ''">
+                    solution=#{solution},
+                </if>
+                <if test="satisfaction != null and satisfaction != ''">
+                    satisfaction=#{satisfaction},
+                </if>
+                <if test="comment != null and comment != ''">
+                    comment=#{comment},
+                </if>
+                <if test="processNode != null and processNode != ''">
+                    process_node=#{processNode},
+                </if>
+                <if test="waitCount != null">
+                    wait_Count=#{waitCount},
+                </if>
+                <if test="endTime != null and endTime != ''">
+                    end_time=#{endTime},
+                </if>
+                <if test="description != null and description != ''">
+                    description=#{description},
+                </if>
+                <if test="appointmentCreate != null">
+                    appointment_create=#{appointmentCreate},
+                </if>
+                <if test="appointmentEnd != null">
+                    appointment_end=#{appointmentEnd},
+                </if>
+                <if test="place != null and place != ''">
+                    place=#{place},
+                </if>
+                <if test="0 != dealWay and dealWay != null">
+                    deal_way=#{dealWay},
+                </if>
+                <if test="deal != null and deal != ''">
+                    deal=#{deal}
+                </if>
+            </set>
+        where 1=1
+        <if test="cardId != null and cardId != 0">
+            and card_id=#{cardId}
+        </if>
+    </update>
+
+    <!-- 获取故障类型对应服务 -->
+    <select id="getServiceById" resultType="TypeService">
+        select pt.type_id as typeId, pt.service_id as serviceId from tb_ServiceGroup sg
+        inner join tb_problemtype pt on sg.id = pt.service_id
+        where 1=1
+        <if test="typeId != null">
+            and pt.type_id = #{typeId}
+        </if>
+    </select>
+
+    <!-- 获取进小时之内的用户创建的工单数量 -->
+    <select id="getCardCount" resultType="int">
+        select count(*) from tb_jobcard where 1=1
+        <if test="applyId != null and applyId != ''">
+            and apply_id=#{applyId}
+        </if>
+        <if test="problemType != null">
+            and problem_type=#{problemType}
+        </if>
+        <if test="createTime != null">
+            and 1 >= TIMESTAMPDIFF(hour,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s'),DATE_FORMAT(#{createTime},'%Y-%m-%d %H:%i:%s'))
+        </if>
+    </select>
+
+    <!-- 获取服务方式 -->
+    <select id="getServiceWay" resultType="ServiceWay">
+        select way_id, way_name from tb_serviceway
+        where 1=1
+        <if test="way_id != 0">
+            and way_id=#{wayId}
+        </if>
+    </select>
+
+    <!-- 创建手工登记单 -->
+    <insert id="createHandCard" parameterType="HandCard">
+        insert into tb_enghandcard(card_id, card_count, fill_time, open_id,
+        fill_name, description) values (#{cardId, jdbcType=VARCHAR}, #{cardCount, jdbcType=INTEGER},
+        #{fillTime, jdbcType=TIMESTAMP}, #{openId, jdbcType=VARCHAR}, #{fillName, jdbcType=VARCHAR},
+        #{description, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 获取手工单列表 -->
+    <select id="getHandCardList" resultType="HandCard">
+        select card_id, card_count, fill_time, open_id,
+        fill_name, description from tb_enghandcard
+        where 1=1 and 7 >= TIMESTAMPDIFF(day,fill_time,NOW())
+        <if test="openId != null and openId != ''">
+            and open_id=#{openId}
+        </if>
+    </select>
+
+    <!-- 获取工程师状态 -->
+    <select id="getEngStatus" resultType="UserStatus">
+        select us.open_id, us.status_id, js.status_name, r.role_name from tb_userstatus us
+        inner join tb_jobstatus js on us.status_id = js.id
+        inner join tb_user_role ur on ur.user_id = us.open_id
+        inner join tb_role r on ur.role_id = r.id
+        where 1=1
+        <if test="open_id != null and open_id != ''">
+            and us.open_id=#{openId}
+        </if>
+    </select>
+
+    <!-- 新增故障类型 -->
+    <insert id="createProblem">
+        insert into tb_problemtype(type_id, type_name, parent_id, service_id, type_no) values
+        (#{typeId, jdbcType=INTEGER}, #{typeName, jdbcType=VARCHAR},
+        #{parentId, jdbcType=INTEGER}, #{serviceId, jdbcType=INTEGER}, #{typeNo, jdbcType=INTEGER})
+    </insert>
+
+    <!-- 删除故障类型 -->
+    <delete id="deleteProblem" parameterType="ProblemInfo">
+        delete from tb_problemtype where 1=1
+        <if test="typeId != null and typeId != 0">
+            and type_id=#{typeId}
+        </if>
+    </delete>
+
+    <!-- 统计当天、本周、本月、本季度、今年工单总数 -->
+    <select id="getAllCardCount" resultType="JobCard">
+        select
+        j.*, u.*
+        from tb_jobcard j
+        inner join tb_userservice u on j.deal=u.open_id
+        where 1=1
+        <if test="timeId == 1 or timeId == 2">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+            and MONTH(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{month}
+        </if>
+        <if test="countId != 0 and countId == 1">
+            and 0 = TIMESTAMPDIFF(day,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s'),NOW())
+        </if>
+        <if test="countId != 0 and countId == 2">
+            and YEARWEEK(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEARWEEK(NOW())
+        </if>
+        <if test="countId != 0 and countId ==3">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+            and MONTH(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = MONTH(NOW())
+        </if>
+        <if test="countId != 0 and countId == 4">
+            and QUARTER(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = QUARTER(NOW())
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        <if test="countId != 0 and countId == 5">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        <if test="year != null and year != 0 and month != null">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{year}
+            and MONTH(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{month}
+        </if>
+        <if test="quarter != null and quarter != 0 and month != null">
+            and QUARTER(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{quarter}
+            and MONTH(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{month}
+        </if>
+        <if test="year != null and year != 0 and month == null">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{year}
+        </if>
+        <if test="quarter != null and quarter != 0 and month == null">
+            and QUARTER(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{quarter}
+        </if>
+        <if test="deptId != 0 and deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="serviceId != 0 and serviceId != null">
+            and service_id=#{serviceId}
+        </if>
+    </select>
+
+    <!-- 获取故障类型工单数所占比例 -->
+    <select id="getProblemCardCount" resultType="ProblemCardCount">
+        select problem_type, count(card_id) as totalCount from tb_jobcard
+        where 1=1
+        <if test="deptId != 0 and deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="countId != 0 and countId == 1">
+            and 0 = TIMESTAMPDIFF(day,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s'),NOW())
+        </if>
+        <if test="countId != 0 and countId == 2">
+            and YEARWEEK(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEARWEEK(NOW())
+        </if>
+        <if test="countId != 0 and countId ==3">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+            and MONTH(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = MONTH(NOW())
+        </if>
+        <if test="countId != 0 and countId == 4">
+            and QUARTER(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = QUARTER(NOW())
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        <if test="countId != 0 and countId == 5">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        GROUP BY problem_type
+        ORDER BY totalCount desc limit 6
+    </select>
+
+    <select id="getDeptCardCount" resultType="ProblemCardCount">
+        select dept_id, count(card_id) as total from tb_jobcard
+        where 1=1
+        <if test="countId != 0 and countId == 1">
+            and 0 = TIMESTAMPDIFF(day,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s'),NOW())
+        </if>
+        <if test="countId != 0 and countId == 2">
+            and YEARWEEK(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEARWEEK(NOW())
+        </if>
+        <if test="countId != 0 and countId ==3">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+            and MONTH(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = MONTH(NOW())
+        </if>
+        <if test="countId != 0 and countId == 4">
+            and QUARTER(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = QUARTER(NOW())
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        <if test="countId != 0 and countId == 5">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        GROUP BY dept_id
+        ORDER BY total desc limit 6
+    </select>
+
+    <!-- 获取问题服务类型接口 -->
+    <select id="getProblemService" resultType="ProblemService">
+        select id as serviceId, service_name as serviceName from tb_servicegroup
+    </select>
+
+    <!-- 修改故障类型排序 -->
+    <update id="updateProblemNo">
+        update tb_problemtype
+        <set>
+            <if test="typeNo != null and typeNo != 0">
+                type_no=#{typeNo},
+            </if>
+            <if test="typeName != null and typeName != ''">
+                type_name=#{typeName},
+            </if>
+            <if test="parentId != null and parentId != 0">
+                parent_id=#{parentId},
+            </if>
+            <if test="serviceId != null and serviceId != 0">
+                service_id=#{serviceId}
+            </if>
+        </set>
+        where 1=1
+        <if test="typeId != null and typeId != 0">
+            and type_id=#{typeId}
+        </if>
+    </update>
+
+    <!-- 统计工程师满意度 -->
+    <select id="getEngComment" resultType="JobCard">
+        select u.UserName as dealName, j.card_id, j.apply_id, j.apply_name, j.satisfaction, j.deal from tb_user_role ur
+        inner join tb_user u on ur.user_id=u.openid
+        inner join tb_jobcard j on ur.user_id = j.deal
+        where ur.role_id=4 and satisfaction is not null
+        <if test="quarter != 5 and quarter != null">
+            and QUARTER(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = #{quarter}
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        <if test="quarter != null and quarter == 5">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')) = YEAR(NOW())
+        </if>
+        <if test="year != null and year != 0">
+            and YEAR(DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s'))=#{year}
+        </if>
+    </select>
+    
+    <!-- 新增日志操作信息 -->
+    <insert id="addLog">
+        insert into tb_loginfo(log_id, create_time, operator_id, operator_name, content,
+        operator_type, operator_result) values (#{logId, jdbcType=VARCHAR}, #{createTime, jdbcType=TIMESTAMP},
+        #{operatorId, jdbcType=VARCHAR}, #{operatorName, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
+        #{operatorType, jdbcType=VARCHAR}, #{operatorResult, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 查询日志操作信息 -->
+    <select id="getLogInfos" resultType="LogInfo">
+        select log_id, create_time, operator_id, operator_name, content, operator_type from tb_loginfo
+        where 1=1
+        <if test="createTime != null and createTime != ''">
+            and create_time > DATE_FORMAT(#{createTime},'%Y-%m-%d %H:%i:%s')
+        </if>
+        <if test="endTime != null and endTime != ''">
+            and DATE_FORMAT(#{endTime},'%Y-%m-%d %H:%i:%s') > create_time
+        </if>
+        <if test="operatorName != null and operatorName != ''">
+            and operator_name like concat('%', #{operatorName}, '%')
+        </if>
+        <if test="operatorType != null and operatorType != ''">
+            and operator_type=#{operatorType}
+        </if>
+        <if test="operatorResult != null and operatorResult != ''">
+            and operator_result=#{operatorResult}
+        </if>
+        order by create_time desc
+        limit #{start}, #{size}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,216 @@
+2020-10-20 08:31:04.545 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 27448 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 08:31:04.549 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 08:31:04.652 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 08:31:04.652 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 08:31:06.530 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 08:31:06.543 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:31:06.544 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 08:31:06.545 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 08:31:06.640 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 08:31:06.641 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1988 ms
+2020-10-20 08:31:06.755 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-10-20 08:35:14.250 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 16668 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 08:35:14.252 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 08:35:14.332 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 08:35:14.332 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 08:35:15.811 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 08:35:15.823 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:35:15.824 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 08:35:15.824 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 08:35:15.908 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 08:35:15.909 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1576 ms
+2020-10-20 08:35:15.994 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-10-20 08:42:47.190 [background-preinit] INFO  org.hibernate.validator.util.Version - Hibernate Validator 4.2.0.Final
+2020-10-20 08:42:47.280 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 13028 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 08:42:47.281 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 08:42:47.343 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 08:42:47.344 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 08:42:49.040 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 08:42:49.055 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:42:49.056 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 08:42:49.057 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 08:42:49.148 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 08:42:49.149 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1805 ms
+2020-10-20 08:42:49.243 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-10-20 08:47:35.456 [background-preinit] INFO  org.hibernate.validator.util.Version - Hibernate Validator 4.2.0.Final
+2020-10-20 08:47:35.554 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 2940 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 08:47:35.556 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 08:47:35.621 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 08:47:35.621 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 08:47:37.018 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 08:47:37.031 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:47:37.032 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 08:47:37.033 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 08:47:37.130 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 08:47:37.131 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1509 ms
+2020-10-20 08:47:37.211 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-10-20 08:48:26.760 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 14628 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 08:48:26.762 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 08:48:26.828 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 08:48:26.828 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 08:48:28.075 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 08:48:28.085 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:48:28.086 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 08:48:28.086 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 08:48:28.183 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 08:48:28.183 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1355 ms
+2020-10-20 08:48:28.439 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 08:48:28.666 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 08:48:28.687 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:48:28.715 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 08:48:28.750 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 2.662 seconds (JVM running for 3.789)
+2020-10-20 08:52:59.654 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 17540 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 08:52:59.656 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 08:52:59.719 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 08:52:59.720 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 08:53:01.305 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 08:53:01.317 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:53:01.318 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 08:53:01.318 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 08:53:01.416 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 08:53:01.416 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1696 ms
+2020-10-20 08:53:01.644 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 08:53:02.343 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 08:53:02.433 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 08:53:02.464 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 08:53:02.500 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 3.5 seconds (JVM running for 4.459)
+2020-10-20 10:34:28.694 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 12836 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 10:34:28.695 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 10:34:28.762 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 10:34:28.763 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 10:34:30.164 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 10:34:30.179 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:34:30.180 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 10:34:30.181 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 10:34:30.287 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 10:34:30.288 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1525 ms
+2020-10-20 10:34:30.504 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 10:34:30.775 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 10:34:30.797 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:34:30.832 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 10:34:30.878 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 2.915 seconds (JVM running for 3.967)
+2020-10-20 10:39:40.604 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 25648 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 10:39:40.605 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 10:39:40.683 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 10:39:40.683 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 10:39:41.943 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 10:39:41.955 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:39:41.956 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 10:39:41.956 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 10:39:42.050 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 10:39:42.050 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1367 ms
+2020-10-20 10:39:42.262 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 10:39:42.465 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 10:39:42.485 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:39:42.515 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 10:39:42.550 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 2.676 seconds (JVM running for 3.973)
+2020-10-20 10:48:00.201 [Thread-6] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-20 10:48:20.120 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 13948 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 10:48:20.121 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 10:48:20.178 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 10:48:20.178 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 10:48:21.675 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 10:48:21.686 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:48:21.687 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 10:48:21.687 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 10:48:21.771 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 10:48:21.771 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1593 ms
+2020-10-20 10:48:22.001 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 10:48:22.609 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 10:48:22.692 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:48:22.721 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 10:48:22.757 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 3.231 seconds (JVM running for 4.647)
+2020-10-20 10:55:58.210 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 13720 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 10:55:58.212 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 10:55:58.273 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 10:55:58.273 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 10:55:59.591 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 10:55:59.600 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:55:59.601 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 10:55:59.601 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 10:55:59.706 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 10:55:59.706 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1433 ms
+2020-10-20 10:55:59.936 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 10:56:00.493 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 10:56:00.579 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:56:00.603 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 10:56:00.638 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 3.054 seconds (JVM running for 4.014)
+2020-10-20 10:57:58.064 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 4060 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 10:57:58.065 [restartedMain] INFO  com.zt.ItServiceCenterApplication - No active profile set, falling back to default profiles: default
+2020-10-20 10:57:58.123 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 10:57:58.123 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 10:57:59.464 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 10:57:59.474 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:57:59.475 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 10:57:59.475 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 10:57:59.556 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 10:57:59.556 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1433 ms
+2020-10-20 10:57:59.790 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 10:58:00.367 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 10:58:00.448 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 10:58:00.475 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 10:58:00.512 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 3.084 seconds (JVM running for 3.988)
+2020-10-20 11:00:36.422 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 25192 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 11:00:36.423 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 11:00:36.483 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 11:00:36.483 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 11:00:37.844 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 11:00:37.854 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 11:00:37.855 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 11:00:37.855 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 11:00:37.943 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 11:00:37.943 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1460 ms
+2020-10-20 11:00:38.170 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 11:00:38.706 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 11:00:38.780 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 11:00:38.807 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 11:00:38.841 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 3.079 seconds (JVM running for 4.113)
+2020-10-20 11:02:05.239 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 10988 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 11:02:05.241 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 11:02:05.308 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 11:02:05.308 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 11:02:06.743 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 11:02:06.751 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 11:02:06.752 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 11:02:06.752 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 11:02:06.835 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 11:02:06.835 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1527 ms
+2020-10-20 11:02:07.059 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 11:02:07.654 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 11:02:07.745 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 11:02:07.773 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 11:02:07.807 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 3.186 seconds (JVM running for 4.099)
+2020-10-20 11:02:20.558 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 23264 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 11:02:20.559 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 11:02:20.646 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 11:02:20.646 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 11:02:22.177 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 11:02:22.187 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 11:02:22.188 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 11:02:22.188 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 11:02:22.281 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 11:02:22.281 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1634 ms
+2020-10-20 11:02:22.554 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 11:02:23.293 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 11:02:23.320 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 11:02:23.354 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 11:02:23.396 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 3.58 seconds (JVM running for 6.183)
+2020-10-20 11:04:59.740 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-20 11:04:59.740 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-10-20 11:04:59.751 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+2020-10-20 12:40:40.343 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-20 12:40:50.816 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Starting ItServiceCenterApplication on wrwu-book with PID 25656 (E:\workfiles\ITProject\target\classes started by wrwu in E:\workfiles\ITProject)
+2020-10-20 12:40:50.820 [restartedMain] INFO  com.zt.ItServiceCenterApplication - The following profiles are active: dev
+2020-10-20 12:40:50.889 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-10-20 12:40:50.889 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-10-20 12:40:52.747 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-10-20 12:40:52.765 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-10-20 12:40:52.767 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-20 12:40:52.768 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-20 12:40:52.962 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-20 12:40:52.963 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2073 ms
+2020-10-20 12:40:53.286 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-20 12:40:54.249 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-20 12:40:54.283 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-10-20 12:40:54.439 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-10-20 12:40:54.457 [restartedMain] INFO  com.zt.ItServiceCenterApplication - Started ItServiceCenterApplication in 4.475 seconds (JVM running for 5.984)

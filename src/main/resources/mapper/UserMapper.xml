@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zt.dao.UserMapper">
+
+    <!-- 获取用户信息 by openId -->
+    <select id="getUserInfo" resultType="UserInfo">
+        select openid as openId, UserName as userName,
+        Authentication as authentication, Department as department,
+        Remark as remark, Company as company, UserId as userId from tb_user
+        where openid=#{openId}
+    </select>
+
+    <!-- 获取用户信息 by userName in tb_User -->
+    <select id="getUserInfoByName" resultType="UserInfo">
+        select openid as openId, UserName as userName,
+        Authentication as authentication, Department as department,
+        Remark as remark, Company as company, UserId as userId from tb_user u
+        inner join tb_user_role ur on u.openid=ur.user_id
+        where UserName=#{userName}
+    </select>
+
+    <!-- 获取用户信息 by userName in tb_User -->
+    <select id="getUserByName" resultType="UserInfo">
+        select openid as openId, UserName as userName,
+        Authentication as authentication, Department as department,
+        Remark as remark, Company as company, UserId as userId from tb_user
+        where UserName=#{userName}
+    </select>
+
+    <!-- 获取用户及其角色信息 -->
+    <select id="getUserAndRole" resultType="UserInfo">
+        select openid as openId, UserName as userName,
+        Authentication as authentication, Department as department,
+        Remark as remark, Company as company, UserId as userId,
+        r.id as roleId, r.role_name from tb_user u
+        inner join tb_user_role ur on ur.user_id = u.openid
+        inner join tb_role r on ur.role_id=r.id
+        where 1=1
+        <if test="roleName != null and roleName != ''">
+            and r.role_name like concat('%', #{roleName}, '%')
+        </if>
+        <if test="userName != null and userName != ''">
+            and userName like concat('%', #{userName}, '%')
+        </if>
+    </select>
+
+    <!-- 获取用户角色 -->
+    <select id="getRoleInfo" resultType="RoleInfo">
+        select r.id as id, r.role_name as roleName, r.description
+        from tb_user_role ur
+        inner join tb_role r on ur.role_id = r.id
+        inner join tb_user u on ur.user_id = u.openid
+        where u.openid=#{openId}
+    </select>
+
+    <!-- 获取拥有某些角色的用户信息 -->
+    <select id="getUserInfoByRole" resultType="UserInfo">
+        select u.openid as openId, u.UserName as userName
+        from tb_user_role ur
+        inner join tb_role r on ur.role_id = r.id
+        inner join tb_user u on ur.user_id = u.openid
+        where r.role_name=#{roleName}
+    </select>
+
+    <!-- 获取用户所有工单 -->
+    <select id="getCardList" resultType="JobCard">
+        select card_id, apply_id, apply_name, priority, problem_type,
+        assist_id, status_id, reason, solution, satisfaction, comment,
+        create_time, end_time, process_node, distribution, deal, change_id,
+        description, construction from tb_jobcard
+    </select>
+
+    <!-- 创建用户 -->
+    <insert id="createUser" parameterType="UserInfo">
+        insert into tb_user(openid, UserName, Authentication, Department,
+         Remark, Company, UserId) values (#{openId, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR},
+         #{authentication, jdbcType=TIMESTAMP}, #{department, jdbcType=VARCHAR},
+         #{remark, jdbcType=VARCHAR}, #{company, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 用户角色表维护 -->
+    <insert id="createUserRole" parameterType="UserRole" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into tb_user_role(user_id, role_id)
+        values(#{userId, jdbcType=VARCHAR}, #{roleId, jdbcType=INTEGER})
+    </insert>
+
+    <!-- 获取用户状态 -->
+    <select id="getUserStatus" resultType="UserStatus">
+        select us.id, us.open_id, us.status_id, js.status_name from tb_userstatus us
+        inner join tb_jobstatus js on us.status_id = js.id
+         where 1=1
+        <if test="openId != null and openId != ''">
+            and open_id=#{openId}
+        </if>
+    </select>
+
+    <!-- 获取用户状态列表 -->
+    <select id="getStatusList" resultType="JobStatus">
+        select id, status_name from tb_jobstatus where 1=1
+        <if test="id != null and id != 0">
+            and id=#{id}
+        </if>
+    </select>
+
+    <!-- 修改用户状态 -->
+    <update id="updateStatus">
+        update tb_userstatus
+        <set>
+            <if test="statusId != null">
+                status_id=#{statusId}
+            </if>
+        </set>
+        where 1=1
+        <if test="openId != null and openId != ''">
+            and open_id=#{openId}
+        </if>
+    </update>
+
+    <!-- 获取该服务类型的用户信息 -->
+    <select id="getUserInfoByType" resultType="UserInfo">
+        select u.openid as openId, u.UserName as userName from tb_servicegroup sg
+        inner join tb_userservice us on us.service_id = sg.id
+        inner join tb_problemtype pt on pt.service_id = sg.id
+        inner join tb_user u on u.openid = us.open_id
+        inner join tb_user_role ur on u.openid = ur.user_id
+        where 1=1 and ur.role_id = 4
+        <if test="typeId != null">
+            and pt.type_id = #{typeId}
+        </if>
+    </select>
+
+    <!-- 登记用户信息 -->
+    <update id="updateUserInfo">
+        update tb_user
+        <set>
+            <if test="userName != null and userName != ''">
+                UserName = #{userName},
+            </if>
+            <if test="userId != null and userId != ''">
+                UserId = #{userId},
+            </if>
+            <if test="company != null and company != ''">
+                Company = #{company},
+            </if>
+            <if test="authentication != null">
+                Authentication = #{authentication},
+            </if>
+            <if test="department != null and department != ''">
+                Department = #{department},
+            </if>
+            <if test="remark != null and remark != ''">
+                Remark = #{remark}
+            </if>
+        </set>
+        where 1=1
+        <if test="openId != null and openId != ''">
+            and openid = #{openId}
+        </if>
+    </update>
+
+    <!-- 获取用户手机号 -->
+    <select id="getUserPhone" resultType="UserPhone">
+        select open_id, mobile_phone, user_name, email from tb_userphone
+        where 1=1
+        <if test="openId != null and openId != ''">
+            and open_id=#{openId}
+        </if>
+    </select>
+
+    <!-- 新增用户手机号 -->
+    <insert id="addUserPhone">
+        insert into tb_userphone(open_id, mobile_phone, user_name, email) values
+        (#{openId, jdbcType=VARCHAR}, #{mobilePhone, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 判断用户手机号是否存在 -->
+    <select id="getUserPhoneByName" resultType="UserInfo">
+        select openid as openId, UserName as userName from tb_user
+        where 1=1
+        <if test="userName != null and userName != ''">
+            and UserName=#{userName}
+        </if>
+    </select>
+
+    <!-- 判断用户手机号是否存在 -->
+    <select id="getPhoneInfoByName" resultType="UserPhone">
+        select open_id as openId, user_name as userName from tb_userphone
+        where 1=1
+        <if test="userName != null and userName != ''">
+            and user_name=#{userName}
+        </if>
+    </select>
+
+    <!-- 修改用户手机号 -->
+    <update id="updatePhoneByName" parameterType="UserPhone">
+        update tb_userphone
+        <set>
+            <if test="mobilePhone != null and mobilePhone != ''">
+                mobile_phone=#{mobilePhone},
+            </if>
+            <if test="email != null and email != ''">
+                email=#{email}
+            </if>
+        </set>
+        where 1=1
+        <if test="userName != null and userName != ''">
+            and user_name=#{userName}
+        </if>
+        <if test="openId != null and openId != ''">
+            and open_id=#{openId}
+        </if>
+    </update>
+
+    <!-- 创建用户手机号 -->
+    <insert id="createUserPhone" parameterType="UserPhone">
+        insert into tb_userphone(open_id, mobile_phone, user_name, email) values
+        (#{openId, jdbcType=VARCHAR}, #{mobilePhone, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 修改用户角色 -->
+    <update id="updateUserRole" parameterType="CommonRequest">
+        update tb_user_role
+        <set>
+            <if test="roleId != null and roleId != 0">
+                role_id=#{roleId}
+            </if>
+        </set>
+        where 1=1
+        <if test="openId != null and openId != ''">
+            and user_id=#{openId}
+        </if>
+        <if test="oldRoleId != null and oldRoleId != 0">
+            and role_id=#{oldRoleId}
+        </if>
+    </update>
+
+    <!-- 获取用户角色列表 -->
+    <select id="getUserRole" resultType="UserRole">
+        select id, role_name as roleName from tb_role
+    </select>
+
+</mapper>
