@@ -29,7 +29,8 @@ public class UserInfo implements Serializable {
     private String remark; // 备注
     private String company; // 公司
     private String userId; // 用户id
-
+    private String statusName; // 用户状态
+    private Integer statusId; // 状态id
     private Integer roleId; // 角色id;
     private String roleName; // 角色名称
 

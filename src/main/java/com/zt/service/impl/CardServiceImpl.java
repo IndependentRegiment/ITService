@@ -81,7 +81,7 @@ public class CardServiceImpl implements CardService {
         System.out.println("----------------order by createTime" + cardList);
         List<JobCardDetail> collect = cardList.stream().skip(startNo).limit(request.getPageSize()).collect(Collectors.toList());
         System.out.println("----------------by substring");
-        cardList.forEach(t1 ->{
+        cardList.forEach(t1 -> {
             System.out.println(t1);
         });
         log.info("get openId:{} card list info:{} success", request.getOpenId(), collect);
@@ -102,7 +102,7 @@ public class CardServiceImpl implements CardService {
                 && (null != request.getEndTime() && !"".equals(request.getEndTime()))
                 && request.getCreateTime().equals(request.getEndTime())) {
             request.setCreateTime(request.getCreateTime() + " 00:00:00");
-            request.setEndTime(request.getEndTime()+ " 23:59:59");
+            request.setEndTime(request.getEndTime() + " 23:59:59");
             log.info("select by createTime:{} and endTime:{}", request.getCreateTime(), request.getEndTime());
         }
         List<JobCard> allCard = cardMapper.getAllCard(request);
@@ -143,7 +143,7 @@ public class CardServiceImpl implements CardService {
                             card.setSatisfaction("60");
                         } else if (Integer.valueOf(card.getSatisfaction()).intValue() == 4) {
                             card.setSatisfaction("80");
-                        }  else if (Integer.valueOf(card.getSatisfaction()).intValue() == 5) {
+                        } else if (Integer.valueOf(card.getSatisfaction()).intValue() == 5) {
                             card.setSatisfaction("100");
                         }
                     }
@@ -183,7 +183,7 @@ public class CardServiceImpl implements CardService {
                         .filter(card -> StringUtils.isEmpty(card.getCreateTime()))
                         .sorted(Comparator.comparing(JobCardDetail::getSatisfaction, Comparator.reverseOrder())
                         .thenComparing(JobCardDetail::getCreateTime, Comparator.reverseOrder())).collect(Collectors.toList());*/
-                cardList.sort((c1, c2) ->c2.getEndTime().compareTo(c1.getEndTime()));
+                cardList.sort((c1, c2) -> c2.getEndTime().compareTo(c1.getEndTime()));
                 return cardList;
             } else if (StatusEnum.getRealStatus(request.getCardType()) != 0) {
                 if (StatusEnum.getRealStatus(request.getCardType()) == 3) {  // in deal
@@ -198,7 +198,7 @@ public class CardServiceImpl implements CardService {
                 } else if (StatusEnum.getRealStatus(request.getCardType()) == 1) {
                     if (request.getUserRole().equals(RoleEnum.ENGINEER.getName())) {
                         for (JobCard card : userCardList) {
-                            if (card.getProcessNode() < ProcessEnum.CARD_DEAL.getProcess()){
+                            if (card.getProcessNode() < ProcessEnum.CARD_DEAL.getProcess()) {
                                 JobCardDetail jobCardDetail = getJobCardDetail(card);
                                 jobCardDetail.setStatus(request.getCardType());
                                 cardList.add(jobCardDetail);
@@ -207,13 +207,13 @@ public class CardServiceImpl implements CardService {
                         return orderByCreateTime(cardList);
                     } else {
                         for (JobCard card : userCardList) {
-                            if (card.getProcessNode() < ProcessEnum.CARD_FINISH.getProcess()){
+                            if (card.getProcessNode() < ProcessEnum.CARD_FINISH.getProcess()) {
                                 JobCardDetail jobCardDetail = getJobCardDetail(card);
                                 jobCardDetail.setStatus(request.getCardType());
                                 cardList.add(jobCardDetail);
                             }
                         }
-                        cardList.sort((c1, c2) ->c2.getCreateTime().compareTo(c1.getCreateTime()));
+                        cardList.sort((c1, c2) -> c2.getCreateTime().compareTo(c1.getCreateTime()));
                         return cardList;
                     }
                 } else if (StatusEnum.getRealStatus(request.getCardType()) == 4) {
@@ -224,7 +224,7 @@ public class CardServiceImpl implements CardService {
                             cardList.add(jobCardDetail);
                         }
                     }
-                    cardList.sort((c1, c2) ->c2.getEndTime().compareTo(c1.getEndTime()));
+                    cardList.sort((c1, c2) -> c2.getEndTime().compareTo(c1.getEndTime()));
                     return cardList;
                 }
                 return orderByCreateTime(cardList);
@@ -238,7 +238,7 @@ public class CardServiceImpl implements CardService {
         List<JobCardDetail> collect = cardList.stream().filter(card -> card.getPriority() > 0)
                 .filter(card -> StringUtils.isNotEmpty(card.getCreateTime()))
                 .sorted(Comparator.comparing(JobCardDetail::getPriority, Comparator.reverseOrder())
-                .thenComparing(JobCardDetail::getCreateTime)).collect(Collectors.toList());
+                        .thenComparing(JobCardDetail::getCreateTime)).collect(Collectors.toList());
 
         /*List<JobCardDetail> collect = cardList.stream()
                 .filter(card -> StringUtils.isNotEmpty(card.getCreateTime()))
@@ -508,7 +508,7 @@ public class CardServiceImpl implements CardService {
         //jobCard.setProcessNode(ProcessEnum.CARD_DEAL.getProcess());
         // set wait_count
         setWaitCount(jobCard);
-        try{
+        try {
             cardMapper.createCard(jobCard);
             // send eamil to notice deal 工程师用户（消息内容：您有新的工单/n 故障类型：***/n 当前待处理数**/n，
             String nowProject = this.project.equals("prod") ? "线上" : "测试";
@@ -517,7 +517,7 @@ public class CardServiceImpl implements CardService {
                 String toEmail = "hzhehao@chint.com";
                 List<UserPhone> userPhone = userMapper.getUserPhone(jobCard.getDeal());
                 if (null != userPhone && 0 != userPhone.size()) {
-                    for(UserPhone user : userPhone) {
+                    for (UserPhone user : userPhone) {
                         if (null != user.getEmail()) {
                             toEmail = user.getEmail();
                             break;
@@ -529,9 +529,9 @@ public class CardServiceImpl implements CardService {
                 toList.add(toEmail);
                 String subject = nowProject + "-IT服务中心待处理工单通知";
                 JobCardDetail jobCardDetail = getJobCardDetail(jobCard);
-                String message = "您有新的待处理工单,工单号: "+ jobCardDetail.getCardId() +",工单申请人：" + jobCardDetail.getApplyName()
-                        + ",故障类型: " + jobCardDetail.getProblemType() +",当前总待处理工单数: " + jobCard.getWaitCount() + ",请尽快处理！";
-                 ExchangeMailUtil.send(subject, toList, message);
+                String message = "您有新的待处理工单,工单号: " + jobCardDetail.getCardId() + ",工单申请人：" + jobCardDetail.getApplyName()
+                        + ",故障类型: " + jobCardDetail.getProblemType() + ",当前总待处理工单数: " + jobCard.getWaitCount() + ",请尽快处理！";
+                ExchangeMailUtil.send(subject, toList, message);
             }
 //            MailUtil.sendHtmlMail(toEmail, subject, message);
 
@@ -563,7 +563,7 @@ public class CardServiceImpl implements CardService {
                     card.setWaitCount(1);
                 }
             } else {
-             card.setWaitCount(1);
+                card.setWaitCount(1);
             }
 
         } else {
@@ -706,7 +706,7 @@ public class CardServiceImpl implements CardService {
                 String toEmail = "";
                 List<UserPhone> userPhone = userMapper.getUserPhone(userCardDetail.getApplyId());
                 if (null != userPhone && 0 != userPhone.size()) {
-                    for(UserPhone user : userPhone) {
+                    for (UserPhone user : userPhone) {
                         if (null != user.getEmail()) {
                             toEmail = user.getEmail();
                             break;
@@ -729,8 +729,8 @@ public class CardServiceImpl implements CardService {
                     } else {
                         dealName = jobCardDetail.getDeal();
                     }
-                    String message = jobCardDetail.getApplyName() + "，您好，您在IT服务中心小程序创建的单号为："+ jobCardDetail.getCardId() +" 的故障单已由" + dealName + "处理，请登录小程序给个好评，感谢您的支持！";
-                     ExchangeMailUtil.send(subject, toList, message);
+                    String message = jobCardDetail.getApplyName() + "，您好，您在IT服务中心小程序创建的单号为：" + jobCardDetail.getCardId() + " 的故障单已由" + dealName + "处理，请登录小程序给个好评，感谢您的支持！";
+                    ExchangeMailUtil.send(subject, toList, message);
                 }
             }
         } catch (Exception ex) {
@@ -750,7 +750,7 @@ public class CardServiceImpl implements CardService {
             List<UserInfo> collect = assistUser.stream().filter(user -> !user
                     .getOpenId().equals(request.getOpenId())).collect(Collectors.toList());
             return collect;
-        } else if(request.getDeal() != null) {
+        } else if (request.getDeal() != null) {
             List<UserInfo> collect = assistUser.stream().filter(user -> !user
                     .getUserName().equals(request.getDeal())).collect(Collectors.toList());
             return collect;
@@ -791,7 +791,7 @@ public class CardServiceImpl implements CardService {
                     String toEmail = "hzhehao@chint.com";
                     List<UserPhone> userPhone = userMapper.getUserPhone(userCardDetail.getAssistId());
                     if (null != userPhone && 0 != userPhone.size()) {
-                        for(UserPhone user : userPhone) {
+                        for (UserPhone user : userPhone) {
                             if (null != user.getEmail()) {
                                 toEmail = user.getEmail();
                                 break;
@@ -803,9 +803,9 @@ public class CardServiceImpl implements CardService {
                     toList.add(toEmail);
                     String subject = nowProject + "-IT服务中心协办工单通知";
                     JobCardDetail jobCardDetail = getJobCardDetail(userCardDetail);
-                    String message = "您有新的未处理协办工单,工单号: "+ jobCardDetail.getCardId() +",原处理工程师：" + jobCardDetail.getDeal()
-                            + ",故障类型: " + jobCardDetail.getProblemType() +",申请人: " + jobCardDetail.getApplyName() + ",请尽快处理！";
-                     ExchangeMailUtil.send(subject, toList, message);
+                    String message = "您有新的未处理协办工单,工单号: " + jobCardDetail.getCardId() + ",原处理工程师：" + jobCardDetail.getDeal()
+                            + ",故障类型: " + jobCardDetail.getProblemType() + ",申请人: " + jobCardDetail.getApplyName() + ",请尽快处理！";
+                    ExchangeMailUtil.send(subject, toList, message);
                 }
             } catch (Exception ex) {
                 log.info("send message to deal:{} failed:{}", userCardDetail.getDeal(), ex);
@@ -863,19 +863,23 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public HandCardListResponse getHandCardList(CommonRequest request) {
-        try{
+        try {
+            /**
+             * 两个参数，工程师列表和用户状态
+             */
             HandCardListResponse response = new HandCardListResponse();
             // set user job status
             UserStatus engStatusInfo = getEngStatusInfo(request);
-            if (null != engStatusInfo) {
+            if (null != engStatusInfo) {  // 如果是工程师
                 response.setUserStatus(engStatusInfo);
             } else {
-                response.setUserStatus(new UserStatus(RoleEnum.USER.getName()));
+                response.setUserStatus(new UserStatus(RoleEnum.USER.getName()));  // 如果是普通的工作人员，就创建一个普通的用户的状态。
             }
             List<HandCard> handCardList = cardMapper.getHandCardList(request.getOpenId());
             List<HandCardResponse> cardResponse = new ArrayList<>();
             if (null != handCardList && 0 != handCardList.size()) {
                 List<HandCardResponse> collect = handCardList.stream().map(card -> {
+                    // 返回请求
                     HandCardResponse handCardResponse = new HandCardResponse();
                     handCardResponse.setCardId(card.getCardId());
                     handCardResponse.setCardCount(card.getCardCount());
@@ -886,7 +890,7 @@ public class CardServiceImpl implements CardService {
                     return handCardResponse;
                 }).collect(Collectors.toList());
                 if (collect != null && collect.size() != 0) {
-                    collect.sort((c1, c2)-> c2.getFillTime().compareTo(c1.getFillTime()));
+                    collect.sort((c1, c2) -> c2.getFillTime().compareTo(c1.getFillTime()));
                     response.setResponseList(collect);
                     return response;
                 }
@@ -905,7 +909,7 @@ public class CardServiceImpl implements CardService {
             // get all hand card judge exist
             List<HandCard> handCardList = cardMapper.getHandCardList(handCard.getOpenId());
             if (null != handCardList && 0 != handCardList.size()) {
-                for(HandCard card : handCardList) {
+                for (HandCard card : handCardList) {
                     if (DateUtil.getNowDateStr2(card.getFillTime()).equals(handCard.getFillTime())) {
                         return 2;
                     }
@@ -931,6 +935,11 @@ public class CardServiceImpl implements CardService {
         }
     }
 
+    /**
+     * 设置工程师状态
+     * @param request
+     * @return
+     */
     @Override
     public UserStatus getEngStatusInfo(CommonRequest request) {
         try {
@@ -947,7 +956,7 @@ public class CardServiceImpl implements CardService {
                             flag = true;
                         }
                     }
-                    if (!flag) {
+                    if (!flag) {  // flag == flase
                         return engStatus.get(0);
                     } else {
                         UserStatus status = new UserStatus();
@@ -982,11 +991,11 @@ public class CardServiceImpl implements CardService {
             List<JobCard> collect = userCardPage.stream()
                     .filter(card -> card.getProcessNode() < ProcessEnum.CARD_DEAL.getProcess()).collect(Collectors.toList());
             if (null != collect && 0 != collect.size()) {
-                collect.sort((c1,c2) -> c2.getCreateTime().compareTo(c1.getCreateTime()));
+                collect.sort((c1, c2) -> c2.getCreateTime().compareTo(c1.getCreateTime()));
                 JobCard jobCard = collect.get(0);
                 JobCardDetail jobCardDetail = getJobCardDetail(jobCard);
                 //str.add("发布成功：故障类型："+ jobCardDetail.getProblemType() +"，工程师："+ jobCardDetail.getDeal() +" ，待处理数：" + jobCardDetail.getWaitCount());
-                str.add("发布成功 处理工程师："+ jobCardDetail.getDeal());
+                str.add("发布成功 处理工程师：" + jobCardDetail.getDeal());
                 str.add("/pages/listDetail/listDetail?status=已创建");
                 return str;
             }
@@ -1018,7 +1027,7 @@ public class CardServiceImpl implements CardService {
         ProblemInfo problemInfo = new ProblemInfo();
         if (request.getTypeId() == null) {
             // is exist
-            for(ProblemInfoResponse problem : problemList) {
+            for (ProblemInfoResponse problem : problemList) {
                 if (problem.getTypeName().equals(request.getTypeName())) {
                     return 2;
                 }
@@ -1034,7 +1043,7 @@ public class CardServiceImpl implements CardService {
             List<Integer> typeNoList = problemList.stream().map(type -> {
                 return type.getTypeNo();
             }).collect(Collectors.toList());
-            Integer maxTypeNo= Collections.max(typeNoList);
+            Integer maxTypeNo = Collections.max(typeNoList);
             problemInfo.setTypeNo(maxTypeNo + 1);
             problemInfo.setServiceId(-1);
             problemInfo.setTypeName(request.getTypeName());
@@ -1075,7 +1084,7 @@ public class CardServiceImpl implements CardService {
                         List<Integer> typeNoList = problemInfoResponse.getProblemList().stream().map(type -> {
                             return type.getTypeNo();
                         }).collect(Collectors.toList());
-                        Integer maxTypeNo= Collections.max(typeNoList);
+                        Integer maxTypeNo = Collections.max(typeNoList);
                         problemInfo.setTypeNo(maxTypeNo + 1);
                         problemInfo.setServiceId(Optional.ofNullable(request.getServiceId()).orElse(2));
                         problemInfo.setTypeName(request.getTypeName());
@@ -1155,10 +1164,12 @@ public class CardServiceImpl implements CardService {
         if (request.getCountId() == null || request.getCountId().intValue() == 0) {
             request.setCountId(3);
         }
-        if (null == request.getServiceId()) {
-            // default select eng of message service
-            request.setServiceId(2);
-        }
+//        if (null == request.getServiceId()) {
+//            // default select eng of message service
+//            request.setServiceId(5);
+//        }
+        // 电源公司所有工程师都是5
+        request.setServiceId(5);
         UserCardCountResponse response = new UserCardCountResponse();
         List<UserInfo> assistUser = cardMapper.getAssistUser(request);
         Map<String, UserInfo> userMap = assistUser.stream().collect(Collectors.toMap(UserInfo::getUserName, UserInfo -> UserInfo));
@@ -1197,15 +1208,15 @@ public class CardServiceImpl implements CardService {
                     }
                 }
 
-                totalCount ++;
+                totalCount++;
             }
             response.setTotalCount(totalCount);
             List<Map.Entry<String, Integer>> userEntry = new ArrayList<>(userCountMap.entrySet());
-            Collections.sort(userEntry, ((u1, u2)-> {
+            Collections.sort(userEntry, ((u1, u2) -> {
                 return u2.getValue().compareTo(u1.getValue());
             }));
             List<Map.Entry<String, Integer>> collect = userEntry.stream().skip(0).limit(5).collect(Collectors.toList());
-            Collections.sort(collect, ((u1, u2)-> {
+            Collections.sort(collect, ((u1, u2) -> {
                 return u1.getValue().compareTo(u2.getValue());
             }));
 
@@ -1232,7 +1243,7 @@ public class CardServiceImpl implements CardService {
                 }
                 if (null != userInfos && 0 != userInfos.size()) {
                     int sum = 5 - userList.size();
-                    for (int i = 0; i < sum; i ++) {
+                    for (int i = 0; i < sum; i++) {
                         userList.add(userInfos.get(i).getUserName());
                         countList.add(0);
                     }
@@ -1245,7 +1256,7 @@ public class CardServiceImpl implements CardService {
         } else {
             if (null != assistUser && 0 != assistUser.size()) {
                 int sum = assistUser.size() <= 5 ? assistUser.size() : 5;
-                for (int i = 0; i < sum; i ++) {
+                for (int i = 0; i < sum; i++) {
                     userList.add(assistUser.get(i).getUserName());
                     countList.add(0);
                 }
@@ -1254,8 +1265,8 @@ public class CardServiceImpl implements CardService {
                 return response;
             }
         }
-        response.setUserList(Arrays.asList("吴富杰", "张治邦", "花蕾", "张捷", "陈静"));
-        response.setCountList(Arrays.asList(0, 0, 0, 0, 0));
+        response.setUserList(Arrays.asList("黄浙浩", "祁彦锦", "戴友谊"));
+        response.setCountList(Arrays.asList(0, 0, 0));
         return response;
     }
 
@@ -1331,8 +1342,8 @@ public class CardServiceImpl implements CardService {
                     int quarterPart = allSum == 0 ? 0 : getPart(allCount, allSum);
                     response.setQuarterPart(quarterPart);
                 }
-            } else if(request.getTimeId() == 2 || request.getYear() != null) {
-                for (int month = 1; month <= 12; month ++) {
+            } else if (request.getTimeId() == 2 || request.getYear() != null) {
+                for (int month = 1; month <= 12; month++) {
                     request.setMonth(month);
                     List<JobCard> allCardCount = cardMapper.getAllCardCount(request);
                     if (null != allCardCount && 0 != allCardCount.size()) {
@@ -1423,15 +1434,15 @@ public class CardServiceImpl implements CardService {
                     }
                     userMap.put(dept, 1);
                 }
-                totalCount ++;
+                totalCount++;
             }
             response.setTotalCount(totalCount);
             List<Map.Entry<String, Integer>> userEntry = new ArrayList<>(userCountMap.entrySet());
-            Collections.sort(userEntry, ((u1, u2)-> {
+            Collections.sort(userEntry, ((u1, u2) -> {
                 return u2.getValue().compareTo(u1.getValue());
             }));
             List<Map.Entry<String, Integer>> collect = userEntry.stream().skip(0).limit(5).collect(Collectors.toList());
-            Collections.sort(collect, ((u1, u2)-> {
+            Collections.sort(collect, ((u1, u2) -> {
                 return u2.getValue().compareTo(u1.getValue());
             }));
             List<String> userList = new ArrayList<>();
@@ -1475,7 +1486,7 @@ public class CardServiceImpl implements CardService {
                 }
                 if (null != deptNames && 0 != deptNames.size()) {
                     int rest = 5 - commentList.size();
-                    for (int i = 0; i < rest; i ++) {
+                    for (int i = 0; i < rest; i++) {
                         userList.add(deptNames.get(i));
                         countList.add(0);
                         unCountList.add(0);
@@ -1543,7 +1554,7 @@ public class CardServiceImpl implements CardService {
                 List<ProblemInfo> completeProblem = getCompleteProblem(someProblemInfo);
                 List<ProblemInfo> problemInfos = new ArrayList<>();
                 for (ProblemInfo problemInfo : completeProblem) {
-                    boolean flag =true;
+                    boolean flag = true;
                     for (ProblemCardCount problem : problemCardCount) {
                         if (problem.getProblemName().equals(problemInfo.getTypeName())) {
                             flag = false;
@@ -1555,7 +1566,7 @@ public class CardServiceImpl implements CardService {
                 }
                 if (null != problemInfos && 0 != problemInfos.size()) {
                     int sum = 6 - problemCardCount.size();
-                    for (int i = 0; i < sum; i ++) {
+                    for (int i = 0; i < sum; i++) {
                         ProblemCardCount problem = new ProblemCardCount();
                         problem.setProblemName(problemInfos.get(i).getTypeName());
                         problem.setCount(0);
@@ -1629,7 +1640,7 @@ public class CardServiceImpl implements CardService {
             int totalCount = 0;
             for (ProblemCardCount dept : deptCardCount) {
                 DeptProblem deptProblem = new DeptProblem();
-                totalCount ++;
+                totalCount++;
                 // get deptName
                 String deptName = "其他";
                 List<DeptInfo> allDept = deptMapper.getAllDept(dept.getDeptId());
@@ -1663,7 +1674,7 @@ public class CardServiceImpl implements CardService {
                             int count = 0;
                             for (JobCard card : allCardCount) {
                                 if (card.getProblemType().equals(problem.getProblemType())) {
-                                    count ++;
+                                    count++;
                                 }
                             }
                             countList.add(count);
@@ -1714,7 +1725,7 @@ public class CardServiceImpl implements CardService {
                 problemMap.put(deptProblem, deptProblem.getCountList().get(0));
             }
             List<Map.Entry<DeptProblem, Integer>> userEntry = new ArrayList<>(problemMap.entrySet());
-            Collections.sort(userEntry, ((u1, u2)-> {
+            Collections.sort(userEntry, ((u1, u2) -> {
                 return u1.getValue().compareTo(u2.getValue());
             }));
             List<DeptProblem> collect = userEntry.stream().map(problem -> {
@@ -1901,9 +1912,9 @@ public class CardServiceImpl implements CardService {
             for (JobCard card : allCardCount) {
                 if (card.getDealWay() != null) {
                     if (card.getDealWay().intValue() == 2) {
-                        xianCount ++;
+                        xianCount++;
                     } else if (card.getDealWay().intValue() == 1) {
-                        yuanCount ++;
+                        yuanCount++;
                     }
                 }
             }
@@ -2020,7 +2031,7 @@ public class CardServiceImpl implements CardService {
                 }
             }
             response.setTotalCount(engComments.size());
-            engComments.sort((e1, e2)-> e2.getPart().compareTo(e1.getPart()));
+            engComments.sort((e1, e2) -> e2.getPart().compareTo(e1.getPart()));
         } else {
             for (UserInfo user : assistList) {
                 if (!userMap.containsKey(user.getUserName())) {
@@ -2043,40 +2054,40 @@ public class CardServiceImpl implements CardService {
     public int sendEmailForComment(SendCardRequest request) {
         if (null != request && null != request.getCardList()
                 && 0 != request.getCardList().size()) {
-                for (String cardId : request.getCardList()) {
-                    JobCard card = cardMapper.getUserCardDetail(cardId);
-                    // send email to user give a comment
-                    try {
+            for (String cardId : request.getCardList()) {
+                JobCard card = cardMapper.getUserCardDetail(cardId);
+                // send email to user give a comment
+                try {
 
-                        if (null != card.getApplyId()) {
-                            String toEmail = "";
-                            List<UserPhone> userPhone = userMapper.getUserPhone(card.getApplyId());
-                            if (null != userPhone && 0 != userPhone.size()) {
-                                for(UserPhone user : userPhone) {
-                                    if (null != user.getEmail()) {
-                                        toEmail = user.getEmail();
-                                        break;
-                                    }
+                    if (null != card.getApplyId()) {
+                        String toEmail = "";
+                        List<UserPhone> userPhone = userMapper.getUserPhone(card.getApplyId());
+                        if (null != userPhone && 0 != userPhone.size()) {
+                            for (UserPhone user : userPhone) {
+                                if (null != user.getEmail()) {
+                                    toEmail = user.getEmail();
+                                    break;
                                 }
                             }
-                            if (!"".equals(toEmail)) {
-                                String nowProject = this.project.equals("prod") ? "线上" : "测试";
-                                List<String> toList = new ArrayList<>();
-                                toList.add(toEmail);
-                                String subject = nowProject + "-IT服务中心工单已处理通知";
-                                JobCardDetail jobCardDetail = getJobCardDetail(card);
-                                String message = jobCardDetail.getApplyName() + "，您好，您在IT服务中心小程序创建的单号为："+ jobCardDetail.getCardId() +" 的故障单已由" + jobCardDetail.getDeal() + "处理，请登录小程序给个好评，感谢您的支持！";
-                                 ExchangeMailUtil.send(subject, toList, message);
-                                return 1;
-                            } else {
-                                return 2;
-                            }
                         }
-                    } catch (Exception ex) {
-                        log.info("send message to deal:{} failed:{}", card.getDeal(), ex);
-                        return 0;
+                        if (!"".equals(toEmail)) {
+                            String nowProject = this.project.equals("prod") ? "线上" : "测试";
+                            List<String> toList = new ArrayList<>();
+                            toList.add(toEmail);
+                            String subject = nowProject + "-IT服务中心工单已处理通知";
+                            JobCardDetail jobCardDetail = getJobCardDetail(card);
+                            String message = jobCardDetail.getApplyName() + "，您好，您在IT服务中心小程序创建的单号为：" + jobCardDetail.getCardId() + " 的故障单已由" + jobCardDetail.getDeal() + "处理，请登录小程序给个好评，感谢您的支持！";
+                            ExchangeMailUtil.send(subject, toList, message);
+                            return 1;
+                        } else {
+                            return 2;
+                        }
                     }
+                } catch (Exception ex) {
+                    log.info("send message to deal:{} failed:{}", card.getDeal(), ex);
+                    return 0;
                 }
+            }
         }
         return 0;
     }
@@ -2106,7 +2117,7 @@ public class CardServiceImpl implements CardService {
         int count1 = count * 100 / sum;
         double num = count * 100.0 / sum;
         if (num == 0.0) {
-            count1 = 0 ;
+            count1 = 0;
         } else if (num < 1) {
             count1 = 1;
         }
@@ -2176,10 +2187,10 @@ public class CardServiceImpl implements CardService {
                     }
                 }
             }
-            jobCardDetailList.sort((c1, c2)-> c2.getCreateTime().compareTo(c1.getCreateTime()));
+            jobCardDetailList.sort((c1, c2) -> c2.getCreateTime().compareTo(c1.getCreateTime()));
             // System.out.println("----------------order by createTime" + cardList);
             List<JobCardDetail> collect = jobCardDetailList.stream().limit(10).collect(Collectors.toList());
-            collect.forEach(data-> {
+            collect.forEach(data -> {
                 System.out.println(data);
             });
             return collect;
@@ -2193,12 +2204,12 @@ public class CardServiceImpl implements CardService {
     private UserInfo getOperator(int typeId, String roleName, String company) {
         // get all card by openId
         Map<UserInfo, Integer> userMap = new HashMap<>();
-        Set<Integer> userList= new HashSet<>();
+        Set<Integer> userList = new HashSet<>();
         if (roleName.equals(RoleEnum.ENGINEER.getName())) {
             // get service by type
             List<UserInfo> userInfoByRole = getAssistList(new AssistInfoRequest());
             log.info("userInfoByRole: {}", userInfoByRole);
-            for(UserInfo user : userInfoByRole) {
+            for (UserInfo user : userInfoByRole) {
                 UserStatus userStatus = userMapper.getUserStatus(user.getOpenId());
                 //System.err.println("userStatus:" + userStatus);
                 if (null != userStatus && userStatus.getStatusId() == 1) { // 获取在线的话务员或工程师
@@ -2274,8 +2285,8 @@ public class CardServiceImpl implements CardService {
         Date date = new Date(System.currentTimeMillis());
         String format = df.format(date);
 
-        Random ne=new Random(); //实例化一个random的对象ne
-        int x = ne.nextInt(999-100+1)+100; //为变量赋随机值1000-9999
+        Random ne = new Random(); //实例化一个random的对象ne
+        int x = ne.nextInt(999 - 100 + 1) + 100; //为变量赋随机值1000-9999
         String random_order = String.valueOf(x);
         String cardId = format + random_order;
         // if cardId exist then create again
@@ -2303,8 +2314,8 @@ public class CardServiceImpl implements CardService {
         Date date = new Date(System.currentTimeMillis());
         String format = df.format(date);
 
-        Random ne=new Random(); //实例化一个random的对象ne
-        int x = ne.nextInt(999-100+1)+100; //为变量赋随机值1000-9999
+        Random ne = new Random(); //实例化一个random的对象ne
+        int x = ne.nextInt(999 - 100 + 1) + 100; //为变量赋随机值1000-9999
         String random_order = String.valueOf(x);
         String cardId = format + random_order;
         // if cardId exist then create again

@@ -12,7 +12,7 @@
 
     <!-- 获取用户信息 by userName in tb_User -->
     <select id="getUserInfoByName" resultType="UserInfo">
-        select openid as openId, UserName as userName,
+        select openid as openId, UsgetUserRoleerName as userName,
         Authentication as authentication, Department as department,
         Remark as remark, Company as company, UserId as userId from tb_user u
         inner join tb_user_role ur on u.openid=ur.user_id
@@ -29,12 +29,22 @@
 
     <!-- 获取用户及其角色信息 -->
     <select id="getUserAndRole" resultType="UserInfo">
-        select openid as openId, UserName as userName,
-        Authentication as authentication, Department as department,
-        Remark as remark, Company as company, UserId as userId,
-        r.id as roleId, r.role_name from tb_user u
+        select openid as openId,
+        UserName as userName,
+        Authentication as authentication,
+        Department as department,
+        Remark as remark,
+        Company as company,
+        UserId as userId,
+--         js.status_name as statusName,
+--         us.status_id as statusId,
+        r.id as roleId,
+        r.role_name
+        from tb_user u
         inner join tb_user_role ur on ur.user_id = u.openid
-        inner join tb_role r on ur.role_id=r.id
+        inner join tb_role r on ur.role_id = r.id
+--         inner join tb_userstatus us on us.open_id = u.openid
+--         inner join tb_jobstatus js on js.id = us.status_id
         where 1=1
         <if test="roleName != null and roleName != ''">
             and r.role_name like concat('%', #{roleName}, '%')
@@ -88,7 +98,7 @@
     <select id="getUserStatus" resultType="UserStatus">
         select us.id, us.open_id, us.status_id, js.status_name from tb_userstatus us
         inner join tb_jobstatus js on us.status_id = js.id
-         where 1=1
+        where 1=1
         <if test="openId != null and openId != ''">
             and open_id=#{openId}
         </if>

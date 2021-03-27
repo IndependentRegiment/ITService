@@ -369,6 +369,17 @@ public class UserServiceImpl implements UserService {
             int startNo = (request.getPageNo() - 1) * request.getPageSize();
             List<UserInfo> collect = userAndRole.stream().skip(startNo)
                     .limit(request.getPageSize()).collect(Collectors.toList());
+            // 获取用户状态
+            for(UserInfo user: collect) {
+                UserStatus userStatus = userMapper.getUserStatus(user.getOpenId());
+                if (null != userStatus) {
+                    user.setStatusName(userStatus.getStatusName());
+                    user.setStatusId(userStatus.getStatusId());
+                } else {  // default， 普通用户的情况
+                    user.setStatusName("在线");
+                    user.setStatusId(1);
+                }
+            }
 
             response.setUserList(collect);
             response.setTotalCount(userAndRole.size());

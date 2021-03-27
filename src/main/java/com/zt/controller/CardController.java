@@ -236,7 +236,11 @@ public class CardController {
         return CommonResult.failed("创建手工单失败!");
     }
 
-    @ApiOperation(value = "发送邮件", notes = "openId：用户openId(必传)")
+    /**
+     * 发送订阅消息的接口
+     * @param request
+     */
+    @ApiOperation(value = "发送公众号的消息", notes = "openId：用户openId(必传)")
     @RequestMapping("/send")
     public void sendMessage(@RequestBody CommonRequest request) {
         log.info("start /card/send send message to openId:{}", request.getOpenId());

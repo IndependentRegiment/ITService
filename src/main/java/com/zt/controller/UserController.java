@@ -8,6 +8,7 @@ import com.zt.entity.response.CardCountResponse;
 import com.zt.entity.response.LoginResponse;
 import com.zt.entity.response.UserCardResponse;
 import com.zt.service.BackCardService;
+import com.zt.service.CardService;
 import com.zt.service.UserService;
 import com.zt.util.GetOpenIdUtil;
 import io.swagger.annotations.Api;
@@ -45,6 +46,9 @@ public class UserController {
 
     @Autowired
     private BackCardService backCardService;
+
+    @Autowired
+    private CardService cardService;
 
     /*获取openid*/
     @ApiOperation(value = "获取用户openId", notes = "根据前端code获取用户openId")
@@ -215,17 +219,17 @@ public class UserController {
         return CommonResult.failed("获取工程师列表失败");
     }
 
-    /*@ApiOperation(value = "获取工程师工作状态", notes = "根据用户openId获取")
+    @ApiOperation(value = "获取工程师工作状态", notes = "根据用户openId获取")
     @RequestMapping("/status/detail")
     public CommonResult getStatusDetail(@RequestBody CommonRequest request) {
         log.info("start user:{} /status/detail get eng job status", request.getOpenId());
-        UserStatus engStatusInfo = userService.getEngStatusInfo(request);
+        UserStatus engStatusInfo = cardService.getEngStatusInfo(request);
         if (null != engStatusInfo) {
             log.info("get user job status success:{}", engStatusInfo);
             return CommonResult.success(engStatusInfo);
         }
         return CommonResult.failed("获取工作状态失败");
-    }*/
+    }
 
     @ApiOperation(value = "获取用户手机号", notes = "openId：用户openId(必传)")
     @RequestMapping("/phone")
