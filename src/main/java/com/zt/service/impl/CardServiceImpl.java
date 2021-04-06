@@ -697,9 +697,9 @@ public class CardServiceImpl implements CardService {
         // set message to user tell card has been deal
         Map<String, TemplateData> map2 = new HashMap<>();
         JobCardDetail jobCardDetail1 = getJobCardDetail(userCardDetail);
-        map2.put("time3", new TemplateData(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+        map2.put("time2", new TemplateData(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
         map2.put("thing4", new TemplateData("故障类型:" + jobCardDetail1.getProblemType() + "请评价"));
-        GetOpenIdUtil.subscribeMessage(userCardDetail.getApplyId(), "/pages/listDetail/listDetail?status=已处理", map2, "djUO_W_b_hm2yMT7-VHltySXkzVvK-pWJHeuKUnevgc");
+        GetOpenIdUtil.subscribeMessage(userCardDetail.getApplyId(), "/pages/listDetail/listDetail?status=已处理", map2, "B_yjAlQ1rIBlW6i9B2Li_JUjoPgWOs5J4JBgNiF5xhY");
         // send email to user tell card has been deal
         try {
             if (null != userCardDetail.getApplyId()) {
@@ -937,6 +937,7 @@ public class CardServiceImpl implements CardService {
 
     /**
      * 设置工程师状态
+     *
      * @param request
      * @return
      */
@@ -1241,13 +1242,14 @@ public class CardServiceImpl implements CardService {
                         }
                     }
                 }
-                if (null != userInfos && 0 != userInfos.size()) {
-                    int sum = 5 - userList.size();
-                    for (int i = 0; i < sum; i++) {
-                        userList.add(userInfos.get(i).getUserName());
-                        countList.add(0);
-                    }
-                }
+//                if (null != userInfos && 0 != userInfos.size()) {
+//                    // 硬编码5是什么意思？
+//                    int sum = 5 - userList.size();
+//                    for (int i = 0; i < sum; i++) {
+//                        userList.add(userInfos.get(i).getUserName());
+//                        countList.add(0);
+//                    }
+//                }
             }
             Collections.sort(countList);
             response.setCountList(countList);
@@ -1265,8 +1267,8 @@ public class CardServiceImpl implements CardService {
                 return response;
             }
         }
-        response.setUserList(Arrays.asList("黄浙浩", "祁彦锦", "戴友谊"));
-        response.setCountList(Arrays.asList(0, 0, 0));
+        response.setUserList(Arrays.asList("黄浙浩", "祁彦锦", "戴友谊", "金秋平"));
+        response.setCountList(Arrays.asList(0, 0, 0, 0));
         return response;
     }
 

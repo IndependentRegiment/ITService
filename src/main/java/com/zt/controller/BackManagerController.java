@@ -161,8 +161,8 @@ public class BackManagerController {
         return CommonResult.failed("获取工单总数失败!");
     }
 
-    @ApiOperation(value = "TOP5工程师工作量（手工单，系统单）", notes = "countId：按时间筛选(1、当天 2、本周 3、本月 4、本季度 5、今年), " +
-            "serviceId：按服务组筛选(1、系统实施) 2、信息服务 3、系统开发 4、系统运维")
+//    @ApiOperation(value = "TOP5工程师工作量（手工单，系统单）", notes = "countId：按时间筛选(1、当天 2、本周 3、本月 4、本季度 5、今年), " +
+//            "serviceId：按服务组筛选(1、系统实施) 2、信息服务 3、系统开发 4、系统运维")
     /*@ApiImplicitParams({
             @ApiImplicitParam(name = "countId", value = "按时间筛选(1、当天 2、本周 3、本月 4、本季度 5、今年)", dataType = "int", paramType = "body")
     })*/

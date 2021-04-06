@@ -248,8 +248,11 @@ public class CardController {
         List<String> content = cardService.getContent(request);
         content.forEach(System.out::println);
 
+        // 订阅的备注
         map2.put("thing1", new TemplateData(content.get(0)));
-        map2.put("time2", new TemplateData(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
-        GetOpenIdUtil.subscribeMessage(request.getOpenId(), content.get(1), map2, "Veu_p4T8OH54zqjXWllvNrveWEnpIbHlz2HI9MePPfM");
+        // 创建的时间
+        map2.put("time5", new TemplateData(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+        // OTStAalp6J83wVYrHDXUZ8eMF4YtW7AgtVe_sqgo020
+        GetOpenIdUtil.subscribeMessage(request.getOpenId(), content.get(1), map2, "Vo8HytQsrGypRwPFRDJvdGgdZIsCVTg77Eaf4pNrgYQ");
     }
 }
